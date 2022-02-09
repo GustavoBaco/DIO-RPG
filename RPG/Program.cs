@@ -57,6 +57,56 @@ namespace dotnet_poo
                 Console.WriteLine("Escolha uma das 4 opções: ");
             }
 
+            Console.WriteLine("============================================");
+            Console.WriteLine("============================================");
+
+            Console.WriteLine($"{name} foi jogado em uma masmorra, onde seu primeiro desafio é matar um esqueleto !");
+            Skeleton skeleton = new Skeleton();
+            Console.WriteLine($"{skeleton.Name} aparece ! ");
+            int opcao;
+            Console.WriteLine("Escolha: ");
+            Console.WriteLine("1 - Lutar");
+            Console.WriteLine("2 - Fugir");
+            opcao = int.Parse(Console.ReadLine());
+            if (opcao == 1)
+            {
+                Console.WriteLine("Escolha seu ataque: ");
+                Console.WriteLine("1 - Ataque com espada");
+                Console.WriteLine("2 - Bater escudo");
+                int opcaoDamge = int.Parse(Console.ReadLine());
+                int lifeSkeleton = skeleton.HP;
+                int damage = 1;
+                while(lifeSkeleton != 0){
+                                                          
+                    if (opcaoDamge == 1){
+                        damage = lifeSkeleton - 23;
+                        lifeSkeleton = damage;
+                        Console.WriteLine($"{skeleton.Name} levou 23 de dano");
+                        if (lifeSkeleton < 0){
+                            lifeSkeleton = 0;
+                        }
+                        
+                    }else{
+                         damage = lifeSkeleton - 13;
+                         lifeSkeleton = damage;
+                         Console.WriteLine($"{skeleton.Name} levou 13 de dano");
+                        if (lifeSkeleton < 0){
+                            lifeSkeleton = 0;
+                        }
+                    }
+                Console.WriteLine(lifeSkeleton);
+                Console.WriteLine("Escolha seu ataque: ");
+                Console.WriteLine("1 - Ataque com espada");
+                Console.WriteLine("2 - Bater escudo");
+                opcaoDamge = int.Parse(Console.ReadLine());
+                    
+                }
+                Console.WriteLine($"{skeleton.Name} foi derrotado");
+            }else{
+                Console.WriteLine("Game Over");
+            }
+
+
         } 
     }  
 }
