@@ -29,7 +29,7 @@ namespace dotnet_poo
                                   " HP: "+knight.Hp+
                                   " MP: "+knight.Mp+
                                   " Hero Type: "+knight.HeroType);
-                                  Combate(name);
+                                  Combate(name,heroType);
                                   
             }
             else if (heroType == 2){
@@ -39,7 +39,7 @@ namespace dotnet_poo
                                   " HP: "+wizard.Hp+
                                   " MP: "+wizard.Mp+
                                   " Hero Type: "+wizard.HeroType);
-                                  Combate(name);
+                                  Combate(name,heroType);
             }
             else if(heroType == 3){
                 Ninja ninja = new Ninja (name,hp,mp,level,"Ninja");
@@ -48,7 +48,7 @@ namespace dotnet_poo
                                   " HP: "+ninja.Hp+
                                   " MP: "+ninja.Mp+
                                   " Hero Type: "+ninja.HeroType);
-                                  Combate(name);
+                                  Combate(name,heroType);
             }
             else if(heroType == 4){
                 BlackWizard blackWizard = new BlackWizard(name,hp,mp,level,"Black Wizard");
@@ -57,24 +57,31 @@ namespace dotnet_poo
                                   " HP: "+blackWizard.Hp+
                                   " MP: "+blackWizard.Mp+
                                   " Hero Type: "+blackWizard.HeroType);
-                                  Combate(name);
+                                  Combate(name,heroType);
             }else{
                 Console.WriteLine("Escolha uma das 4 opções: ");
             }
 
-            // Console.WriteLine("============================================");
-            // Console.WriteLine("============================================");
+           
 
-            // Console.WriteLine($"{name} foi jogado em uma masmorra, onde seu primeiro desafio é matar um esqueleto !");
-            // Skeleton skeleton = new Skeleton();
-            // Console.WriteLine($"{skeleton.Name} aparece ! ");
-            // int opcao;
-            // Console.WriteLine("Escolha: ");
-            // Console.WriteLine("1 - Lutar");
-            // Console.WriteLine("2 - Fugir");
-            // opcao = int.Parse(Console.ReadLine());
-            // if (opcao == 1)
-            // {
+
+        } 
+        // Iniciação do combate
+        static void Combate(string name,int heroType){
+            Console.WriteLine("============================================");
+            Console.WriteLine("============================================");
+
+            Console.WriteLine($"{name} foi jogado em uma masmorra, onde seu primeiro desafio é matar um esqueleto !");
+            Skeleton skeleton = new Skeleton();
+            Console.WriteLine($"{skeleton.Name} aparece ! ");
+            int opcao;
+            Console.WriteLine("Escolha: ");
+            Console.WriteLine("1 - Lutar");
+            Console.WriteLine("2 - Fugir");
+            opcao = int.Parse(Console.ReadLine());
+            if (opcao == 1)
+            {
+                Attack(heroType);
             //     Console.WriteLine("Escolha seu ataque: ");
             //     Console.WriteLine("1 - Ataque com espada");
             //     Console.WriteLine("2 - Bater escudo");
@@ -107,26 +114,16 @@ namespace dotnet_poo
                     
             //     }
             //     Console.WriteLine($"{skeleton.Name} foi derrotado");
-            // }else{
-            //     Console.WriteLine("Game Over");
-            // }
+                }else{
+                Console.WriteLine("Game Over");
+                }
 
-
-        } 
-        static void Combate(string name){
-            Console.WriteLine("============================================");
-            Console.WriteLine("============================================");
-
-            Console.WriteLine($"{name} foi jogado em uma masmorra, onde seu primeiro desafio é matar um esqueleto !");
-            Skeleton skeleton = new Skeleton();
-            Console.WriteLine($"{skeleton.Name} aparece ! ");
-            int opcao;
-            Console.WriteLine("Escolha: ");
-            Console.WriteLine("1 - Lutar");
-            Console.WriteLine("2 - Fugir");
-            opcao = int.Parse(Console.ReadLine());
-            if (opcao == 1)
-            {
+        }
+    
+        // Ataque para diferentes classes.
+        static void Attack(int heroType){
+            if (heroType == 1){
+                Skeleton skeleton = new Skeleton();
                 Console.WriteLine("Escolha seu ataque: ");
                 Console.WriteLine("1 - Ataque com espada");
                 Console.WriteLine("2 - Bater escudo");
@@ -159,15 +156,46 @@ namespace dotnet_poo
                     
                 }
                 Console.WriteLine($"{skeleton.Name} foi derrotado");
-            }else{
-                Console.WriteLine("Game Over");
+            }else if(heroType == 2){
+                Skeleton skeleton = new Skeleton();
+                Console.WriteLine("Escolha seu ataque: ");
+                Console.WriteLine("1 - Lançou Magia de Raio");
+                Console.WriteLine("2 - Lançou Magia de Vento");
+                int opcaoDamge = int.Parse(Console.ReadLine());
+                int lifeSkeleton = skeleton.HP;
+                int damage = 1;
+                while(lifeSkeleton != 0){
+                                                          
+                    if (opcaoDamge == 1){
+                        damage = lifeSkeleton - 23;
+                        lifeSkeleton = damage;
+                        Console.WriteLine($"{skeleton.Name} levou 23 de dano de magia de raio");
+                        if (lifeSkeleton < 0){
+                            lifeSkeleton = 0;
+                        }
+                        
+                    }else{
+                         damage = lifeSkeleton - 13;
+                         lifeSkeleton = damage;
+                         Console.WriteLine($"{skeleton.Name} levou 13 de dano de magia de vento");
+                        if (lifeSkeleton < 0){
+                            lifeSkeleton = 0;
+                        }
+                    }
+                Console.WriteLine(lifeSkeleton);
+                Console.WriteLine("Escolha seu ataque: ");
+                Console.WriteLine("1 - Lançou Magia de Raio");
+                Console.WriteLine("2 - Lançou Magia de Vento");
+                opcaoDamge = int.Parse(Console.ReadLine());
+                    
+                }
+                Console.WriteLine($"{skeleton.Name} foi derrotado");
+            }
             }
 
-        }
-    
-        static void Attack(int heroType){
-
-        }
+            
+            
+        
     
     }  
 }
